@@ -2,7 +2,7 @@
 var fs = require('fs')
 var path = require('path')
 // 可改寫副檔名及編碼
-var x = '.xml'
+var x = '.txt'
 var ru = 'utf8'
 var wu = 'utf8'
 // 完成後的副檔名
@@ -33,7 +33,7 @@ function XmlAddMypb(go) {
             // 若只執行當前目錄，則註釋此行，並啟動返回通知
             // XmlAddMypb(n)
             console.log('Stop read Directory:' + n)
-            
+
             // 判斷是否為所要轉換的副檔名的檔案
         } else if (path.extname(n) == x) {
 
@@ -48,29 +48,49 @@ function XmlAddMypb(go) {
             // if(/0xEF0xBB0xBF/.test(b[0])){
             // b[0].replace(/[0xEF|0xBB|0xBF]/,'')
 
-            // 加上批次頁碼
-            // 預設變量，才能累加頁碼
+            // 開頭加上<file>
+            b[0] = b[0].replace(/^(.)/, '<file>\n$1')
+
+            // 加上批次冊碼頁碼
+            // 預設變量，才能累加冊碼頁碼
             var s0 = 0
             var s1 = 0
             var s2 = 1
+            var sfn = 1
+            var sa = 1
             for (var i = 1; i < b.length; i++) {
                 // <pb>不能寫在b[0]之前，否則「位元組順序記號」 EF BB BF ，會跑到第2行，變成亂碼
                 // b[i] = b[i] + '<pb n="' + j + '"/>'
                 // 先刪除舊的<頁>標記
                 b[i] = b[i].replace(/<頁 id.+>/, '')
-                // 加上頁碼
+                // 調整[註釋]標記
+                if (/<fn /.test(b[i])) {
+                    b[i] = b[i].replace(/(<fn n=")([^"]+)("\/>)/g, '<link to ="' + path.basename(n,'.txt') + '_' + sfn + '">▼</link>"')
+                    sfn++
+                }
+                if (/<\?★/.test(b[i])) {
+                    b[i] = b[i].replace(/<\?★"([^"]+)">[^\?]*\?>/g, '<a n="' + path.basename(n,'.txt') + '_' + sa + '">▲</a>')
+                    sa++
+                }
+                // 加上冊碼頁碼
+                // 多個檔案的時候，不好算出冊碼，就省去冊碼
                 if (/<article/.test(b[i]) || s2 > 999) {
                     s2 = 1
                     s1++
-                    b[i] = '<pb n="' + s1 + '.' + s2 + '"/>\n' + b[i]
+                    // b[i] = '<pb n="' + s1 + '.' + s2 + '"/>\n' + b[i]
+                    b[i] = '<pb n="' + s2 + '"/>\n' + b[i]
                     s0 = i + 30
                 }
                 if (i == s0) {
                     s2++
-                    b[i] = '<pb n="' + s1 + '.' + s2 + '"/>\n' + b[i]
+                    // b[i] = '<pb n="' + s1 + '.' + s2 + '"/>\n' + b[i]
+                    b[i] = '<pb n="' + s2 + '"/>\n' + b[i]
                     s0 = i + 30
                 }
             }
+            // 結尾加上</file>
+            b[b.length] = '</file>'
+
 
             // 用絕對路徑寫入檔案
             fs.writeFileSync(n + afterName, b.join('\n'), wu)

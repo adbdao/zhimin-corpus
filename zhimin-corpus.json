@@ -27,9 +27,6 @@
 		"eng",
 		"talk"
 	],
-	"external": {
-		"footnotes": "footnotes.json"
-	},
 	"files": [
 		"a1_KS.txt",
 		"a2_3X.txt",
