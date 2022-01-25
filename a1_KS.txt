@@ -1,5 +1,5 @@
 ﻿<file>
-<group>智敏大師全集\開示</group>
+<article>智敏大師全集\開示</article>
 <pb n="1"/>
 <article>趣入解脫之門—— 歸依</article>
 智敏上師

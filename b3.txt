@@ -1,5 +1,5 @@
 <file>
-<group>能海大師全集\傳記</group>
+<article>能海大師全集\傳記</article>
 <pb n="1"/>
 <article>《能海上師傳》</article>
 　  海公上師俗姓龔，名學光，字緝熙，1886年丙戌臘月22日誕生於四川綿竹縣漢

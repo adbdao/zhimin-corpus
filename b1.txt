@@ -1,5 +1,5 @@
 <file>
-<group>能海大師全集\基本三學</group>
+<article>能海大師全集\基本三學</article>
 <pb n="1"/>
 <article>《定道資糧頌》</article>
 能海法師 集

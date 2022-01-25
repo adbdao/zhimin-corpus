@@ -65,7 +65,7 @@ function XmlAddMypb(go) {
                 b[i] = b[i].replace(/<頁 id.+>/, '')
                 // 調整[註釋]標記
                 if (/<fn /.test(b[i])) {
-                    b[i] = b[i].replace(/(<fn n=")([^"]+)("\/>)/g, '<link to ="' + path.basename(n,'.txt') + '_' + sfn + '">▼</link>"')
+                    b[i] = b[i].replace(/(<fn n=")([^"]+)("\/>)/g, '<link to ="' + path.basename(n,'.txt') + '_' + sfn + '">▼</link>')
                     sfn++
                 }
                 if (/<\?★/.test(b[i])) {
