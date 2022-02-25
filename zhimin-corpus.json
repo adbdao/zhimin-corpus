@@ -1,6 +1,9 @@
 {
 	"name": "zhimin",
 	"title": "智敏大師全集",
+	"external": {
+		"footnotes": "json/z.json"
+	},
 	"rendClass": [
 		"kai",
 		"b",
@@ -28,17 +31,17 @@
 		"talk"
 	],
 	"files": [
-		"a1_KS.txt",
-		"a2_3X.txt",
-		"a3_kosa.txt",
-		"a3_kosa2.txt",
-		"a4_wishi.txt",
-		"a4_wishi1.txt",
-		"a4_wishi2.txt",
-		"a5_LS.txt",
-		"a5_16d.txt",
-		"b1.txt",
-		"b2.txt",
-		"b3.txt"
+		"a1_KS.txt.log",
+		"a2_3X.txt.log",
+		"a3_kosa.txt.log",
+		"a3_kosa2.txt.log",
+		"a4_wishi.txt.log",
+		"a4_wishi1.txt.log",
+		"a4_wishi2.txt.log",
+		"a5_LS.txt.log",
+		"a5_16d.txt.log",
+		"b1.txt.log",
+		"b2.txt.log",
+		"b3.txt.log"
 	]
 }
